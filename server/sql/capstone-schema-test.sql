@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Cast_Members` (
 	`bio` varchar(255) NOT NULL,
 	`birthdate` date NOT NULL,
 	`random_fact` varchar(255) NOT NULL,
-	`user_id` int NOT NULL,
+	`user_id` int NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `Episode_Member` (
 CREATE TABLE IF NOT EXISTS `Registered_Users` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
 	`username` varchar(50) NOT NULL UNIQUE,
-	`password` varchar(8) NOT NULL,
+	`password` varchar(15) NOT NULL,
 	`name` varchar(50) NOT NULL,
 	`email` varchar(50) NOT NULL,
     `score` int DEFAULT 0,
@@ -57,24 +57,30 @@ CREATE TABLE IF NOT EXISTS `Registered_Users` (
 );
 
 ALTER TABLE `Episodes` ADD CONSTRAINT `Episodes_fk7` FOREIGN KEY (`show_id`) REFERENCES `Shows`(`id`);
-ALTER TABLE `Cast_Members` ADD CONSTRAINT `Cast_Members_fk6` FOREIGN KEY (`user_id`) REFERENCES `Registered_Users`(`id`);
+ALTER TABLE `Cast_Members` ADD CONSTRAINT `Cast_Members_fk6` FOREIGN KEY (`user_id`) REFERENCES `Registered_Users`(`id`) ON DELETE SET NULL;
 ALTER TABLE `Episode_Member` ADD CONSTRAINT `Episode_Member_fk1` FOREIGN KEY (`episode_id`) REFERENCES `Episodes`(`id`);
 ALTER TABLE `Episode_Member` ADD CONSTRAINT `Episode_Member_fk2` FOREIGN KEY (`cast_member_id`) REFERENCES `Cast_Members`(`id`);
 
 delimiter //
 create procedure set_known_good_state()
 begin
-	delete from `Shows`;
-    alter table `Shows` auto_increment = 1;
-    delete from `Episodes`;
-    alter table `Episodes` auto_increment = 1;
-    delete from `Cast_Members`;
-    alter table `Cast_Members` auto_increment = 1;
     delete from `Episode_Member`;
     alter table `Episode_Member` auto_increment = 1;
+    delete from `Cast_Members`;
+    alter table `Cast_Members` auto_increment = 1;
+	delete from `Episodes`;
+    alter table `Episodes` auto_increment = 1;
+    delete from `Shows`;
+    alter table `Shows` auto_increment = 1;
     delete from `Registered_Users`;
     alter table `Registered_Users` auto_increment = 1;
 
+    insert into `Registered_Users` (`id`, `username`, `password`, `name`, `email`, `score`) 
+		values 
+        ('1', 'user1', 'password1', 'User One', 'userone@email.com', '0'),
+		('2', 'user2', 'password2', 'User Two', 'usertwo@email.com', '0'),
+		('3', 'user3', 'password3', 'User Three', 'userthree@email.com', '0');
+        
 	insert into `Shows` (`id`, `name`, `start_date`, `end_date`, `rating`, `creator`, `genre`, `storyline`, `production_company`) 
 		values
         ('1', 'The Office', '2005-03-24', '2013-05-16', '8', 'Greg Daniels', 'Comedy', 'A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.', 'Deedle-Dee Productions'), 
@@ -102,12 +108,6 @@ begin
 		('3', '3', '2', '9'),
 		('4', '4', '2', '9'),
 		('5', '5', '3', '8');
-    
-    insert into `Registered_Users` (`id`, `username`, `password`, `name`, `email`, `score`) 
-		values 
-        ('1', 'user1', 'password1', 'User One', 'userone@email.com', '0'),
-		('2', 'user2', 'password2', 'User Two', 'usertwo@email.com', '0'),
-		('3', 'user3', 'password3', 'User Three', 'userthree@email.com', '0');
 
 end //
 delimiter ;

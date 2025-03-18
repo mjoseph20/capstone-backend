@@ -1,20 +1,22 @@
 package org.capstone.data;
 
-import org.capstone.data.interfaces.UserRepository;
+import org.capstone.data.interfaces.RegisteredUserRepository;
 import org.capstone.data.mappers.RegisteredUserMapper;
 import org.capstone.models.RegisteredUser;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class UserJdbcClientRepository implements UserRepository {
+@Repository
+public class RegisteredUserJdbcClientRepository implements RegisteredUserRepository {
 
     private final String SELECT = "SELECT * FROM Registered_Users";
 
     private final JdbcClient client;
 
-    public UserJdbcClientRepository(JdbcClient client) {
+    public RegisteredUserJdbcClientRepository(JdbcClient client) {
         this.client = client;
     }
 
@@ -67,8 +69,8 @@ public class UserJdbcClientRepository implements UserRepository {
                     username = :username,
                     password = :password,
                     name = :name,
-                    email = :email,
-                WHERE id = :id
+                    email = :email
+                WHERE id = :id;
                 """;
 
         return client.sql(sql)

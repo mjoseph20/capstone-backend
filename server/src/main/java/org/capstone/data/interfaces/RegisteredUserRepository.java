@@ -4,7 +4,7 @@ import org.capstone.models.RegisteredUser;
 
 import java.util.List;
 
-public interface UserRepository {
+public interface RegisteredUserRepository {
 
     RegisteredUser findUserById(int id);
 
