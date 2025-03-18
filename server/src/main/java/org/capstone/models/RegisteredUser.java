@@ -14,15 +14,18 @@ public class RegisteredUser {
 
     private String email;
 
+    private int score;
+
     public RegisteredUser() {
     }
 
-    public RegisteredUser(int id, String username, String password, String name, String email) {
+    public RegisteredUser(int id, String username, String password, String name, String email, int score) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.score = score;
     }
 
     public int getId() {
@@ -63,6 +66,14 @@ public class RegisteredUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     @Override
