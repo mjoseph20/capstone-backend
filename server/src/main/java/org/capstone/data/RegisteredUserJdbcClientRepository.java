@@ -23,10 +23,34 @@ public class RegisteredUserJdbcClientRepository implements RegisteredUserReposit
     @Override
     public RegisteredUser findUserById(int id) {
 
-        final String sql = SELECT + " WHERE id = ?";
+        final String sql = SELECT + " WHERE id = ?;";
 
         return client.sql(sql)
                 .param(id)
+                .query(new RegisteredUserMapper())
+                .optional()
+                .orElse(null);
+    }
+
+    @Override
+    public RegisteredUser findUserByUsername(String username) {
+
+        final String sql = SELECT + " WHERE username = ?;";
+
+        return client.sql(sql)
+                .param(username)
+                .query(new RegisteredUserMapper())
+                .optional()
+                .orElse(null);
+    }
+
+    @Override
+    public RegisteredUser findUserByEmail(String email) {
+
+        final String sql = SELECT + " WHERE email = ?;";
+
+        return client.sql(sql)
+                .param(email)
                 .query(new RegisteredUserMapper())
                 .optional()
                 .orElse(null);
