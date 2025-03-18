@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `Episode_Member` (
 CREATE TABLE IF NOT EXISTS `Registered_Users` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
 	`username` varchar(50) NOT NULL UNIQUE,
-	`password` varchar(8) NOT NULL,
+	`password` varchar(15) NOT NULL,
 	`name` varchar(50) NOT NULL,
 	`email` varchar(50) NOT NULL,
     `score` int DEFAULT 0,

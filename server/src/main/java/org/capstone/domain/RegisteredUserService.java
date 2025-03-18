@@ -17,8 +17,30 @@ public class RegisteredUserService {
         this.repository = repository;
     }
 
-    public RegisteredUser findUserById(int id) {
-        return repository.findUserById(id);
+    public Result<RegisteredUser> findUserById(int id) {
+        Result<RegisteredUser> result = new Result<>();
+        RegisteredUser foundUser = repository.findUserById(id);
+
+        if (foundUser == null) {
+            result.addMessage("User not found", ResultType.NOT_FOUND);
+        } else {
+            result.setPayload(foundUser);
+        }
+
+        return result;
+    }
+
+    public Result<RegisteredUser> findUserByUsername(String username) {
+        Result<RegisteredUser> result = new Result<>();
+        RegisteredUser foundUser = repository.findUserByUsername(username);
+
+        if (foundUser == null) {
+            result.addMessage("User not found", ResultType.NOT_FOUND);
+        } else {
+            result.setPayload(foundUser);
+        }
+
+        return result;
     }
 
     public Result<RegisteredUser> createUser(RegisteredUser user) {
