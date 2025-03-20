@@ -28,23 +28,20 @@ class RegisteredUserServiceTest {
 
         @Test
         void shouldFindUserById() {
-            RegisteredUser expected = new RegisteredUser();
-            expected.setId(1);
-            expected.setUsername("user1");
-            expected.setPassword("password1");
-            expected.setName("User One");
+            Result<RegisteredUser> expected = new Result<>();
+            RegisteredUser expectedUser = expected.getPayload();
 
-            when(repository.findUserById(1)).thenReturn(expected);
-            RegisteredUser actual = service.findUserById(1);
+            when(repository.findUserById(1)).thenReturn(expectedUser);
+            Result<RegisteredUser> actual = service.findUserById(1);
 
-            assertEquals(expected, actual);
+            assertEquals(expectedUser, actual.getPayload());
         }
 
         @Test
         void shouldNotFindUserById() {
             when(repository.findUserById(1)).thenReturn(null);
-            RegisteredUser actual = service.findUserById(1);
-            assertNull(actual);
+            Result<RegisteredUser> actual = service.findUserById(1);
+            assertNull(actual.getPayload());
         }
     }
 
