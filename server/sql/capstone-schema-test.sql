@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `Cast_Members` (
 	`name` varchar(50) NOT NULL,
 	`professional_title` varchar(50) NOT NULL,
 	`bio` varchar(255) NOT NULL,
-	`birthdate` date NOT NULL,
+	`birth_date` date NOT NULL,
 	`random_fact` varchar(255) NOT NULL,
 	`user_id` int NULL,
 	PRIMARY KEY (`id`)
@@ -95,7 +95,7 @@ begin
 		('4', '1', '2', 'Cat''s in the Bag...', 'Walter and Jesse attempt to tie up loose ends.', '2008-01-27', '9', '2'),
 		('5', '1', '1', 'The One Where Monica Gets a Roommate', 'Monica''s high school friend Rachel moves in with her after leaving her fiancé.', '1994-09-22', '8', '3');
     
-    insert into `Cast_Members` (`id`, `name`, `professional_title`, `bio`, `birthdate`, `random_fact`, `user_id`) 
+    insert into `Cast_Members` (`id`, `name`, `professional_title`, `bio`, `birth_date`, `random_fact`, `user_id`) 
 		values 
         ('1', 'Steve Carell', 'Actor', 'Steve Carell, one of America''s most versatile comics, was born Steven John Carell on August 16, 1962, in Concord, Massachusetts.', '1962-08-16', 'He is of Italian (from his maternal grandfather), German, and Polish descent.', '1'), 
 		('2', 'Bryan Cranston', 'Actor', 'Bryan Cranston is an American actor, voice actor, producer, director, and screenwriter.', '1956-03-07', 'He is of German, Austrian, and Irish descent.', '2'),

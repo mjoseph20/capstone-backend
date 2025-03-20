@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `Cast_Members` (
 	`name` varchar(50) NOT NULL,
 	`professional_title` varchar(50) NOT NULL,
 	`bio` varchar(255) NOT NULL,
-	`birthdate` date NOT NULL,
+	`birth_date` date NOT NULL,
 	`random_fact` varchar(255) NOT NULL,
 	`user_id` int NOT NULL,
 	PRIMARY KEY (`id`)
