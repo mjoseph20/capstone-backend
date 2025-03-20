@@ -1,6 +1,7 @@
 package org.capstone.models;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Episode {
@@ -15,7 +16,7 @@ public class Episode {
 
     private String description;
 
-    private String airDate;
+    private LocalDate airDate;
 
     private BigDecimal rating;
 
@@ -24,7 +25,7 @@ public class Episode {
     public Episode() {
     }
 
-    public Episode(int id, int season, int episodeNumber, String title, String description, String airDate, BigDecimal rating, int showId) {
+    public Episode(int id, int season, int episodeNumber, String title, String description, LocalDate airDate, BigDecimal rating, int showId) {
         this.id = id;
         this.season = season;
         this.episodeNumber = episodeNumber;
@@ -75,11 +76,11 @@ public class Episode {
         this.description = description;
     }
 
-    public String getAirDate() {
+    public LocalDate getAirDate() {
         return airDate;
     }
 
-    public void setAirDate(String airDate) {
+    public void setAirDate(LocalDate airDate) {
         this.airDate = airDate;
     }
 
