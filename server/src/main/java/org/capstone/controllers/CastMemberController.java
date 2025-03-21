@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cast-member")
-@CrossOrigin(origins = {"http://localhost:5500"})
+@RequestMapping("/api/cast-members")
+@CrossOrigin(origins = {"http://localhost:8080"})
 public class CastMemberController {
 
     private final CastMemberService service;
