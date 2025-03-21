@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/show")
-@CrossOrigin(origins = {"http://localhost:5500"})
+@RequestMapping("/api/shows")
+@CrossOrigin(origins = {"http://localhost:8080"})
 public class ShowController {
 
     private final ShowService service;
