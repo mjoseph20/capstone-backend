@@ -16,7 +16,7 @@ public class CastMemberMapper implements RowMapper<CastMember> {
         castMember.setBiography(rs.getString("bio"));
         castMember.setBirthDate(rs.getDate("birth_date").toLocalDate());
         castMember.setRandomFact(rs.getString("random_fact"));
-        castMember.setUserId(rs.getInt("user_id"));
+        castMember.setActive(rs.getBoolean("is_active"));
         return castMember;
     }
 }

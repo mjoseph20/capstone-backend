@@ -40,4 +40,19 @@ class CastMemberJdbcClientRepositoryTest {
         assertEquals(3, repository.findAllCastMembers().size());
     }
 
+    @Test
+    void shouldAddCastMemberToTeam() {
+        assertTrue(repository.addCastMemberToTeam(1));
+    }
+
+    @Test
+    void shouldSwapCastMemberForAnother() {
+        assertTrue(repository.swapCastMemberForAnother(1, 2));
+    }
+
+    @Test
+    void shouldRemoveCastMemberFromTeam() {
+        assertTrue(repository.removeCastMemberFromTeam(1));
+    }
+
 }

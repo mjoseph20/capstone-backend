@@ -5,10 +5,7 @@ import org.capstone.domain.helpers.Result;
 import org.capstone.domain.helpers.ResultType;
 import org.capstone.models.CastMember;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,13 +32,46 @@ public class CastMemberController {
     }
 
     @GetMapping("/{castMemberId}")
-    public ResponseEntity<Object> findCastMemberById(int castMemberId) {
+    public ResponseEntity<Object> findCastMemberById(@PathVariable int castMemberId) {
         Result<CastMember> result = service.findCastMemberById(castMemberId);
 
         if (result.isSuccess()) {
             return ResponseEntity.ok(result.getPayload());
         } else if (result.getType() == ResultType.NOT_FOUND) {
             return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.badRequest().body(result.getMessages());
+        }
+    }
+
+    @PutMapping("/add/{castMemberId}")
+    public ResponseEntity<Object> addCastMemberToTeam(@PathVariable int castMemberId) {
+        Result<CastMember> result = service.addCastMemberToTeam(castMemberId);
+
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result.getPayload());
+        } else {
+            return ResponseEntity.badRequest().body(result.getMessages());
+        }
+    }
+
+    @PutMapping("/remove/{castMemberId}")
+    public ResponseEntity<Object> removeCastMemberFromTeam(@PathVariable int castMemberId) {
+        Result<CastMember> result = service.removeCastMemberFromTeam(castMemberId);
+
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result.getPayload());
+        } else {
+            return ResponseEntity.badRequest().body(result.getMessages());
+        }
+    }
+
+    @PutMapping("/swap/{castMemberId}/{newCastMemberId}")
+    public ResponseEntity<Object> swapCastMembers(@PathVariable int castMemberId, @PathVariable int newCastMemberId) {
+        Result<CastMember> result = service.swapCastMemberForAnother(castMemberId, newCastMemberId);
+
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result.getPayload());
         } else {
             return ResponseEntity.badRequest().body(result.getMessages());
         }
