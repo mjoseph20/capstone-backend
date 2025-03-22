@@ -18,19 +18,19 @@ public class CastMember {
 
     private String randomFact;
 
-    private int userId;
+    private boolean isActive;
 
     public CastMember() {
     }
 
-    public CastMember(int id, String name, String professionalTitle, String biography, LocalDate birthDate, String randomFact, int userId) {
+    public CastMember(int id, String name, String professionalTitle, String biography, LocalDate birthDate, String randomFact, boolean isActive) {
         this.id = id;
         this.name = name;
         this.professionalTitle = professionalTitle;
         this.biography = biography;
         this.birthDate = birthDate;
         this.randomFact = randomFact;
-        this.userId = userId;
+        this.isActive = isActive;
     }
 
     public int getId() {
@@ -81,23 +81,23 @@ public class CastMember {
         this.randomFact = randomFact;
     }
 
-    public int getUserId() {
-        return userId;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         CastMember that = (CastMember) o;
-        return id == that.id && userId == that.userId && Objects.equals(name, that.name) && Objects.equals(professionalTitle, that.professionalTitle) && Objects.equals(biography, that.biography) && Objects.equals(birthDate, that.birthDate) && Objects.equals(randomFact, that.randomFact);
+        return id == that.id && isActive == that.isActive && Objects.equals(name, that.name) && Objects.equals(professionalTitle, that.professionalTitle) && Objects.equals(biography, that.biography) && Objects.equals(birthDate, that.birthDate) && Objects.equals(randomFact, that.randomFact);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, professionalTitle, biography, birthDate, randomFact, userId);
+        return Objects.hash(id, name, professionalTitle, biography, birthDate, randomFact, isActive);
     }
 }

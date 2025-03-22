@@ -28,6 +28,6 @@ public class GlobalErrHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        return new ResponseEntity<String>("Something went wrong on our end :/ ", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

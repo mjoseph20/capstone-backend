@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Cast_Members` (
 	`bio` varchar(255) NOT NULL,
 	`birth_date` date NOT NULL,
 	`random_fact` varchar(255) NOT NULL,
-	`user_id` int NULL,
+	`is_active` boolean DEFAULT FALSE,
 	PRIMARY KEY (`id`)
 );
 
@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS `Registered_Users` (
 );
 
 ALTER TABLE `Episodes` ADD CONSTRAINT `Episodes_fk7` FOREIGN KEY (`show_id`) REFERENCES `Shows`(`id`);
-ALTER TABLE `Cast_Members` ADD CONSTRAINT `Cast_Members_fk6` FOREIGN KEY (`user_id`) REFERENCES `Registered_Users`(`id`) ON DELETE SET NULL;
 ALTER TABLE `Episode_Member` ADD CONSTRAINT `Episode_Member_fk1` FOREIGN KEY (`episode_id`) REFERENCES `Episodes`(`id`);
 ALTER TABLE `Episode_Member` ADD CONSTRAINT `Episode_Member_fk2` FOREIGN KEY (`cast_member_id`) REFERENCES `Cast_Members`(`id`);
 
@@ -95,11 +94,11 @@ begin
 		('4', '1', '2', 'Cat''s in the Bag...', 'Walter and Jesse attempt to tie up loose ends.', '2008-01-27', '9', '2'),
 		('5', '1', '1', 'The One Where Monica Gets a Roommate', 'Monica''s high school friend Rachel moves in with her after leaving her fiancé.', '1994-09-22', '8', '3');
     
-    insert into `Cast_Members` (`id`, `name`, `professional_title`, `bio`, `birth_date`, `random_fact`, `user_id`) 
+    insert into `Cast_Members` (`id`, `name`, `professional_title`, `bio`, `birth_date`, `random_fact`, `is_active`) 
 		values 
-        ('1', 'Steve Carell', 'Actor', 'Steve Carell, one of America''s most versatile comics, was born Steven John Carell on August 16, 1962, in Concord, Massachusetts.', '1962-08-16', 'He is of Italian (from his maternal grandfather), German, and Polish descent.', '1'), 
-		('2', 'Bryan Cranston', 'Actor', 'Bryan Cranston is an American actor, voice actor, producer, director, and screenwriter.', '1956-03-07', 'He is of German, Austrian, and Irish descent.', '2'),
-		('3', 'Jennifer Aniston', 'Actress', 'Jennifer Joanna Aniston was born on February 11, 1969, in Sherman Oaks, Los Angeles, California.', '1969-02-11', 'She is of Greek descent.', '3');
+        ('1', 'Steve Carell', 'Actor', 'Steve Carell, one of America''s most versatile comics, was born Steven John Carell on August 16, 1962, in Concord, Massachusetts.', '1962-08-16', 'He is of Italian (from his maternal grandfather), German, and Polish descent.', true), 
+		('2', 'Bryan Cranston', 'Actor', 'Bryan Cranston is an American actor, voice actor, producer, director, and screenwriter.', '1956-03-07', 'He is of German, Austrian, and Irish descent.', false),
+		('3', 'Jennifer Aniston', 'Actress', 'Jennifer Joanna Aniston was born on February 11, 1969, in Sherman Oaks, Los Angeles, California.', '1969-02-11', 'She is of Greek descent.', true);
     
     insert into `Episode_Member` (`id`, `episode_id`, `cast_member_id`, `episode_score`) 
 		values 

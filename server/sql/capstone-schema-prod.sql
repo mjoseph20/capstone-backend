@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Cast_Members` (
 	`bio` varchar(255) NOT NULL,
 	`birth_date` date NOT NULL,
 	`random_fact` varchar(255) NOT NULL,
-	`user_id` int NOT NULL,
+	`is_active` boolean DEFAULT FALSE,
 	PRIMARY KEY (`id`)
 );
 
@@ -58,6 +58,5 @@ CREATE TABLE IF NOT EXISTS `Registered_Users` (
 
 
 ALTER TABLE `Episodes` ADD CONSTRAINT `Episodes_fk7` FOREIGN KEY (`show_id`) REFERENCES `Shows`(`id`);
-ALTER TABLE `Cast_Members` ADD CONSTRAINT `Cast_Members_fk6` FOREIGN KEY (`user_id`) REFERENCES `Registered_Users`(`id`);
 ALTER TABLE `Episode_Member` ADD CONSTRAINT `Episode_Member_fk1` FOREIGN KEY (`episode_id`) REFERENCES `Episodes`(`id`);
 ALTER TABLE `Episode_Member` ADD CONSTRAINT `Episode_Member_fk2` FOREIGN KEY (`cast_member_id`) REFERENCES `Cast_Members`(`id`);
