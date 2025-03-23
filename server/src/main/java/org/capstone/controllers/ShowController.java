@@ -5,10 +5,7 @@ import org.capstone.domain.helpers.Result;
 import org.capstone.domain.helpers.ResultType;
 import org.capstone.models.Show;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class ShowController {
     }
 
     @GetMapping("/{showId}")
-    public ResponseEntity<Object> findShowById(int showId) {
+    public ResponseEntity<Object> findShowById(@PathVariable int showId) {
         Result<Show> result = service.findShowById(showId);
 
         if (result.isSuccess()) {

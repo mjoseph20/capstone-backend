@@ -5,10 +5,7 @@ import org.capstone.domain.helpers.Result;
 import org.capstone.domain.helpers.ResultType;
 import org.capstone.models.EpisodeMember;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class EpisodeMemberController {
     }
 
     @GetMapping("/{episodeMemberId}")
-    public ResponseEntity<Object> findEpisodeMemberById(int episodeMemberId) {
+    public ResponseEntity<Object> findEpisodeMemberById(@PathVariable int episodeMemberId) {
         Result<EpisodeMember> result = service.findEpisodeMemberById(episodeMemberId);
 
         if (result.isSuccess()) {
@@ -48,7 +45,7 @@ public class EpisodeMemberController {
     }
 
     @GetMapping("/episode/{episodeId}")
-    public ResponseEntity<Object> findEpisodeMembersByEpisodeId(int episodeId) {
+    public ResponseEntity<Object> findEpisodeMembersByEpisodeId(@PathVariable int episodeId) {
         Result<List<EpisodeMember>> result = service.findEpisodeMembersByEpisodeId(episodeId);
 
         if (result.isSuccess()) {
@@ -59,7 +56,7 @@ public class EpisodeMemberController {
     }
 
     @GetMapping("/member/{memberId}")
-    public ResponseEntity<Object> findEpisodeMembersByMemberId(int memberId) {
+    public ResponseEntity<Object> findEpisodeMembersByMemberId(@PathVariable int memberId) {
         Result<List<EpisodeMember>> result = service.findEpisodeMembersByMemberId(memberId);
 
         if (result.isSuccess()) {
