@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `Shows` (
 	`genre` varchar(50) NOT NULL,
 	`storyline` varchar(255) NOT NULL,
 	`production_company` varchar(50) NOT NULL,
+    `image_url` varchar(255) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -23,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `Episodes` (
 	`description` varchar(255) NOT NULL,
 	`air_date` date NOT NULL,
 	`rating` decimal(10,0) NOT NULL,
+    `image_url` varchar(255) NOT NULL,
 	`show_id` int NOT NULL,
 	PRIMARY KEY (`id`)
 );

@@ -24,10 +24,12 @@ public class Show {
 
     private String productionCompany;
 
+    private String imageUrl;
+
     public Show() {
     }
 
-    public Show(int id, String name, LocalDate startDate, LocalDate endDate, BigDecimal rating, String creator, String genre, String storyline, String productionCompany) {
+    public Show(int id, String name, LocalDate startDate, LocalDate endDate, BigDecimal rating, String creator, String genre, String storyline, String productionCompany, String imageUrl) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -37,6 +39,15 @@ public class Show {
         this.genre = genre;
         this.storyline = storyline;
         this.productionCompany = productionCompany;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {

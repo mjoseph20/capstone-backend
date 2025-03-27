@@ -37,6 +37,19 @@ public class CastMemberService {
         return result;
     }
 
+    public Result<List<CastMember>> findActiveCastMembers(){
+        Result<List<CastMember>> result = new Result<>();
+        List<CastMember> foundCastMembers = repository.findActiveCastMembers();
+
+        if (foundCastMembers == null) {
+            result.addMessage("No active cast members found", ResultType.NOT_FOUND);
+        } else {
+            result.setPayload(foundCastMembers);
+        }
+
+        return result;
+    }
+
     public Result<List<CastMember>> findAllCastMembers(){
         Result<List<CastMember>> result = new Result<>();
         List<CastMember> foundCastMembers = repository.findAllCastMembers();
@@ -85,10 +98,6 @@ public class CastMemberService {
 
         if (castMember != null && !castMember.isActive()) {
             result1.addMessage("No User associated with this Cast Member", ResultType.INVALID);
-        }
-
-        if (!castMember.isActive()) {
-            result1.addMessage("Cast member is not associated with that user ID", ResultType.INVALID);
         }
 
         if (!result2.isSuccess()) {

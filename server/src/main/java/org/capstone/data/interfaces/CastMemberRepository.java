@@ -8,6 +8,8 @@ public interface CastMemberRepository {
 
     CastMember findCastMemberById(int id);
 
+    List<CastMember> findActiveCastMembers();
+
     List<CastMember> findAllCastMembers();
 
     boolean addCastMemberToTeam(int castMemberId);

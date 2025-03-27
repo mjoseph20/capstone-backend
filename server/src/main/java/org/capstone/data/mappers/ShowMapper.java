@@ -19,6 +19,7 @@ public class ShowMapper implements RowMapper<Show> {
         show.setGenre(rs.getString("genre"));
         show.setStoryline(rs.getString("storyline"));
         show.setProductionCompany(rs.getString("production_company"));
+        show.setImageUrl(rs.getString("image_url"));
         return show;
     }
 }

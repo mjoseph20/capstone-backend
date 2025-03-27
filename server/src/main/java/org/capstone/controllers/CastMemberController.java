@@ -31,6 +31,17 @@ public class CastMemberController {
         }
     }
 
+    @GetMapping("/active")
+    public ResponseEntity<Object> findActiveCastMembers() {
+        Result<List<CastMember>> result = service.findActiveCastMembers();
+
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result.getPayload());
+        } else {
+            return ResponseEntity.badRequest().body(result.getMessages());
+        }
+    }
+
     @GetMapping("/{castMemberId}")
     public ResponseEntity<Object> findCastMemberById(@PathVariable int castMemberId) {
         Result<CastMember> result = service.findCastMemberById(castMemberId);

@@ -19,6 +19,7 @@ class RegisteredUserJdbcClientRepositoryTest {
 
     @BeforeEach
     void setup() {
+
         knownGoodState.set();
     }
 

@@ -22,10 +22,12 @@ public class Episode {
 
     private int showId;
 
+    private String imageUrl;
+
     public Episode() {
     }
 
-    public Episode(int id, int season, int episodeNumber, String title, String description, LocalDate airDate, BigDecimal rating, int showId) {
+    public Episode(int id, int season, int episodeNumber, String title, String description, LocalDate airDate, BigDecimal rating, String imageUrl, int showId) {
         this.id = id;
         this.season = season;
         this.episodeNumber = episodeNumber;
@@ -33,6 +35,7 @@ public class Episode {
         this.description = description;
         this.airDate = airDate;
         this.rating = rating;
+        this.imageUrl = imageUrl;
         this.showId = showId;
     }
 
@@ -90,6 +93,14 @@ public class Episode {
 
     public void setRating(BigDecimal rating) {
         this.rating = rating;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getShowId() {

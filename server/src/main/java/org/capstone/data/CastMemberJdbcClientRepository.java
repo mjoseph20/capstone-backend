@@ -30,6 +30,13 @@ public class CastMemberJdbcClientRepository implements CastMemberRepository {
     }
 
     @Override
+    public List<CastMember> findActiveCastMembers() {
+        return client.sql(SELECT + " WHERE is_active = true;")
+                .query(new CastMemberMapper())
+                .list();
+    }
+
+    @Override
     public List<CastMember> findAllCastMembers() {
         return client.sql(SELECT + ";")
                 .query(new CastMemberMapper())

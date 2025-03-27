@@ -36,6 +36,11 @@ class CastMemberJdbcClientRepositoryTest {
     }
 
     @Test
+    void shouldFindActiveCastMembers() {
+        assertEquals(2, repository.findActiveCastMembers().size());
+    }
+
+    @Test
     void shouldFindAll() {
         assertEquals(3, repository.findAllCastMembers().size());
     }

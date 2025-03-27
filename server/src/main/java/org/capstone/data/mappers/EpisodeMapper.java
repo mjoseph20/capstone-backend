@@ -17,6 +17,7 @@ public class EpisodeMapper implements RowMapper<Episode> {
         episode.setDescription(rs.getString("description"));
         episode.setAirDate(rs.getDate("air_date").toLocalDate());
         episode.setRating(rs.getBigDecimal("rating"));
+        episode.setImageUrl(rs.getString("image_url"));
         episode.setShowId(rs.getInt("show_id"));
         return episode;
     }

@@ -140,11 +140,12 @@ PUT {{url}}/1 HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": 1,
-    "username": "janedoe",
-    "password": "newPassword",
-    "name": "Jane Doe",
-    "email": "janedoeemail.com"
+   "id": 1,
+  "username": "myUsernam",
+  "password": "myPasswor",
+  "name": "nam",
+  "email": "myNam@email.com",
+  "score": 100
 }
 
 ###

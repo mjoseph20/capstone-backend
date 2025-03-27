@@ -14,7 +14,7 @@ public class KnownGoodState {
 
     void set() {
         if (!hasRun) {
-            //hasRun = true;
+            hasRun = true;
             jdbcClient.sql("call set_known_good_state();").update();
         }
     }

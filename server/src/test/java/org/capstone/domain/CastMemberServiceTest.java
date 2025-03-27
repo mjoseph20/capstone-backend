@@ -58,6 +58,35 @@ class CastMemberServiceTest {
     }
 
     @Test
+    void findActiveCastMembers() {
+        // Arrange
+        CastMember castMember = createCastMember(1);
+
+        when(repository.findActiveCastMembers()).thenReturn(List.of(castMember));
+
+        // Act
+        Result<List<CastMember>> result = service.findActiveCastMembers();
+
+        // Assert
+        assertEquals(ResultType.SUCCESS, result.getType());
+        assertEquals(1, result.getPayload().size());
+        assertEquals(castMember, result.getPayload().get(0));
+    }
+
+    @Test
+    void findActiveCastMembersNotFound() {
+        // Arrange
+        when(repository.findActiveCastMembers()).thenReturn(null);
+
+        // Act
+        Result<List<CastMember>> result = service.findActiveCastMembers();
+
+        // Assert
+        assertEquals(ResultType.NOT_FOUND, result.getType());
+        assertNull(result.getPayload());
+    }
+
+    @Test
     void findAllCastMembers() {
         // Arrange
         CastMember castMember = createCastMember(1);
