@@ -1,0 +1,9 @@
+@url=http://localhost:8080/api/episodes
+
+GET {{url}} HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET {{url}}/1 HTTP/1.1
+Content-Type: application/json

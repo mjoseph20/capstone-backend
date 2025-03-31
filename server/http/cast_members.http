@@ -1,0 +1,26 @@
+@url=http://localhost:8080/api/cast-members
+
+GET {{url}} HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET {{url}}/active HTTP/1.1
+Content-Type: application/json
+
+###
+
+PUT {{url}}/add/1 HTTP/1.1
+
+###
+
+PUT {{url}}/remove/1 HTTP/1.1
+
+###
+
+PUT {{url}}/swap/1/2 HTTP/1.1

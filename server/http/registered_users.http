@@ -1,0 +1,187 @@
+@url = http://localhost:8080/api/registeredUser
+
+# Register a new user
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password",
+    "username": "johndoe"
+}
+
+###
+
+# Missing required fields
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "",
+    "email": "",
+    "password": "",
+    "username": ""
+}
+
+###
+
+# Invalid Email
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoeemail.com",
+    "password": "password",
+    "username": "johndone"
+}
+
+###
+
+# Invalid Password
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndo@email.com",
+    "password": "pass",
+    "username": "johndo"
+}
+
+###
+
+# Duplicate Username
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password",
+    "username": "johndoe"
+}
+
+###
+
+# Duplicate Email
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password",
+    "username": "johndoe1"
+}
+
+###
+
+# Get user by id
+GET {{url}}/1 HTTP/1.1
+
+###
+
+# Not found
+GET {{url}}/999 HTTP/1.1
+
+###
+
+# Login
+POST {{url}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "johndoe",
+    "password": "password"
+}
+
+###
+
+# Login with invalid username
+POST {{url}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "johndont",
+    "password": "notpassword"
+}
+
+###
+
+# Login with invalid password
+POST {{url}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "johndoe",
+    "password": "notpassword"
+}
+
+###
+
+# Update user
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "username": "janedoe",
+    "password": "newPassword",
+    "name": "Jane Doe",
+    "email": "janedoe@email.com"
+}
+
+###
+
+# Update user with invalid email    
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+   "id": 1,
+  "username": "myUsernam",
+  "password": "myPasswor",
+  "name": "nam",
+  "email": "myNam@email.com",
+  "score": 100
+}
+
+###
+
+# Update user with invalid password
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "username": "janedoe",
+    "password": "new",  
+    "name": "Jane Doe",
+    "email": "janedoe@email.net"
+}
+
+###
+
+# ID Conflict
+PUT {{url}}/999 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "username": "janedoe",
+    "password": "newPassword",
+    "name": "Jane Doe",
+    "email": "janedoe@email.net"
+}
+
+###
+
+# Delete user
+DELETE {{url}}/1 HTTP/1.1
+
+###
+
+# Delete user not found
+DELETE {{url}}/999 HTTP/1.1
